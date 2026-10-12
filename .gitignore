@@ -1,0 +1,17 @@
+# Pipeline output: raw downloads, the DuckDB file and exports are rebuilt by `bikeshare run`
+data/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.pytest_cache/
+.ruff_cache/
+
+# Power BI: commit the .pbit template, not the .pbix (which embeds the data)
+*.pbix
+
+# OS
+.DS_Store
+Thumbs.db
