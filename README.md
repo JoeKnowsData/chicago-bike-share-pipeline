@@ -177,11 +177,45 @@ In total 97.3% of the 6.17 million raw rows reach `fct_trips`, and the
 
 ## Power BI
 
-The report is built on the `marts` star schema. [docs/powerbi.md](docs/powerbi.md) covers
-connecting (Parquet or DuckDB ODBC), the relationships, starter DAX measures and suggested
-pages.
+A five-page report built on the `marts` star schema. The report itself is in
+[`powerbi/Chicago Bike Share Analysis.pbit`](powerbi), a template that holds the model,
+DAX measures and visuals but no data. It uses a custom theme,
+[`powerbi/divvy_theme.json`](powerbi/divvy_theme.json): members are navy, casual
+riders light blue.
 
-<!-- Add screenshots of the report here, e.g. ![Overview](docs/images/overview.png) -->
+**Overview:** headline numbers and the monthly trend for members and casual riders.
+
+![Overview](docs/images/overview.png)
+
+**When people ride:** weekdays peak at the 8am and 5pm commutes, mostly members, while
+weekends are busiest from late morning into the afternoon.
+
+![When people ride](docs/images/when_people_ride.png)
+
+**Weather:** daily trips against the day's maximum temperature, with wet days in dark
+blue, and average trips per day for each temperature band.
+
+![Weather](docs/images/weather.png)
+
+**Stations:** the busiest stations for casual riders, and which stations gain or lose
+bikes over the year.
+
+![Stations](docs/images/stations.png)
+
+**Data quality:** what happened to every raw row, and why rows were rejected.
+
+![Data quality](docs/images/data_quality.png)
+
+### Opening the template
+
+1. Run the pipeline (`bikeshare run`) so the Parquet files exist in `data/exports/`.
+2. Open the `.pbit` in Power BI Desktop. The data sources point at the folder the report
+   was built in, so if the load fails, cancel it and go to **Transform data → Data source
+   settings → Change source** for each table, pointing it at your own `data/exports/`
+   folder. Then click **Refresh**.
+
+[docs/powerbi.md](docs/powerbi.md) covers connecting from scratch (Parquet or DuckDB
+ODBC), the relationships and the DAX measures.
 
 ## Design decisions
 
